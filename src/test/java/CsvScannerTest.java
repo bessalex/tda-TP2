@@ -20,7 +20,7 @@ public class CsvScannerTest {
 
     @Test
     public void CsvScannerTestConteoInstancias() {
-        CsvScanner csv = new CsvScanner("/home/alex/Workspace/tda/tda-TP2/src/main/resources/knapPI_1_50_1000.csv");
+        CsvScanner csv = new CsvScanner("src/main/resources/knapPI_1_50_1000.csv");
 
         ArrayList<Instance> instances = csv.getInstances();
 
@@ -39,7 +39,7 @@ public class CsvScannerTest {
 
     @Test
     public void CsvScannerTestConteo_Items_por_instancias(){
-        CsvScanner csv = new CsvScanner("/home/alex/Workspace/tda/tda-TP2/src/main/resources/knapPI_1_50_1000.csv");
+        CsvScanner csv = new CsvScanner("src/main/resources/knapPI_1_50_1000.csv");
 
         ArrayList<Instance> instances = csv.getInstances();
         Assert.assertNotEquals(instances, null);

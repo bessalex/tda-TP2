@@ -7,7 +7,7 @@ import org.junit.Test;
 public class KnapsackTest {
     @Test
     public void getOpt() throws Exception {
-        CsvScanner csv = new CsvScanner("/home/alex/Workspace/tda/tda-TP2/src/main/resources/knapTest.csv");
+        CsvScanner csv = new CsvScanner("src/main/resources/knapTest.csv");
         Instance instance = csv.getnsInstace(0);
 
         Knapsack knapsack = new Knapsack(instance.getMaxItems(), instance.getCapacity(),instance.getItems());
