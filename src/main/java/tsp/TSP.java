@@ -7,23 +7,26 @@ public class TSP {
 
     private static final Integer integer = 0;
 
-    public final Integer getPathWeight(Integer source, Set<Integer> nodes, Integer[][] matrix) {
+    public final Pair getPathWeight(Integer source, Set<Integer> nodes, Integer[][] matrix) {
         if (nodes.isEmpty()) {
-            return matrix[source][0];
+            System.out.println(source);
+            return new Pair(String.format("(%s,0)", String.valueOf(source)),matrix[source][0]);
         }
-        Set<Integer> solutions = new HashSet<>();
+        Set<Pair> solutions = new HashSet<>();
         for (Integer node : nodes) {
-            Integer value = matrix[source][node] + getPathWeight(node,copySet(nodes,node),matrix);
-            solutions.add(value);
+            Set<Integer> copy = copySet(nodes,node);
+            Pair pair = getPathWeight(node,copy,matrix);
+            Integer value = matrix[source][node] + pair.getValue();
+            solutions.add(new Pair(String.format("(%s,%s) + %s",String.valueOf(source),String.valueOf(node),pair.getPath()),value));
         }
         return getMin(solutions);
     }
 
-    public Integer getMin(Set<Integer> values) {
-        Integer min = 1000000;
-        for (Integer value : values) {
-            if (value < min) {
-                min = value;
+    public Pair getMin(Set<Pair> values) {
+        Pair min = new Pair("",1000000);
+        for (Pair pair : values) {
+            if (pair.getValue() < min.getValue()) {
+                min = pair;
             }
         }
         return min;

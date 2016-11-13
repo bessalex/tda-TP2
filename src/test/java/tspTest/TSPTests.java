@@ -1,6 +1,7 @@
-package tspTests;
+package tspTest;
 
 import org.junit.Test;
+import tsp.Pair;
 import tsp.TSP;
 
 import java.util.HashSet;
@@ -28,8 +29,8 @@ public class TSPTests {
         matrix[1][0] = 10;
         matrix[0][1] = 10;
 
-        matrix[2][0] = 5;
-        matrix[0][2] = 5;
+        matrix[2][0] = 35;
+        matrix[0][2] = 35;
 
         matrix[2][1] = 3;
         matrix[1][2] = 3;
@@ -44,7 +45,8 @@ public class TSPTests {
         matrix[2][3] = 9;
 
         TSP tsp = new TSP();
-        System.out.println(tsp.getPathWeight(0,nodes,matrix));
+        Pair result = tsp.getPathWeight(0,nodes,matrix);
+        System.out.println(String.format("Path : %s . Value : %s",result.getPath(),String.valueOf(result.getValue())));
 
     }
 }
