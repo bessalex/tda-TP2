@@ -1,3 +1,5 @@
+package KnapsackProblem;
+
 import java.util.ArrayList;
 
 /**

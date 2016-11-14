@@ -1,3 +1,5 @@
+package KnapsackProblem;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -35,8 +37,7 @@ public class CsvScanner {
     }
 
 
-
-    public Instance getInstance(){
+    private Instance getInstance(){
         int maxItems, capacity, optimum;
         float time;
         int number, value, weight, selected;
