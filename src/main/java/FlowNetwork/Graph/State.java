@@ -3,5 +3,7 @@ package FlowNetwork.Graph;
 /**
  * Created by maxi on 15/11/16.
  */
-public class State {
+public enum State {
+    VISITED,
+    NOTVISITED
 }
