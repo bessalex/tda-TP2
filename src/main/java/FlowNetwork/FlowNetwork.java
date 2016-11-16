@@ -88,21 +88,30 @@ public class FlowNetwork {
         Node node = graph.getNode(source);
         node.visited();
         queue.add(node);
+
+        //List all project nodes
+        ArrayList<Integer> sourceNodes = new ArrayList<Integer>();
+        for (Edge edgeSource : node.getEdges()) {
+            sourceNodes.add(graph.getNode(edgeSource.getTargetNode()).getId());
+        }
+
         while (!queue.isEmpty()) {
             node = queue.remove();
             for (Edge edge : node.getEdges()) {
-                if((edge.getWeight() -edge.getFlow()) > 0) {
+                if((edge.getWeight() - edge.getFlow()) > 0) {
                     Node currentNode = graph.getNode(edge.getTargetNode());
                     if (currentNode.getState() == State.NOTVISITED) {
-                        minimalCut.add(currentNode.getId());
                         currentNode.visited();
                         queue.add(currentNode);
+                        //Only add project nodes
+                        if(sourceNodes.contains(currentNode.getId())){
+                            minimalCut.add(currentNode.getId());
+                        }
                     }
                 }
 
             }
         }
-        System.out.println(minimalCut);
         this.minCut = minimalCut;
     }
 
