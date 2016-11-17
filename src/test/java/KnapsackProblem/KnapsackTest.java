@@ -21,7 +21,7 @@ public class KnapsackTest {
 
     @Test
     public void getOptSmall() throws Exception {
-        CsvScanner csv = new CsvScanner("src/main/resources/knapPI_1_50_1000.csv");
+        CsvScanner csv = new CsvScanner("src/main/resources/knapsack/knapPI_1_50_1000.csv");
 
         ArrayList<Instance> instances = csv.getInstances();
 
@@ -34,24 +34,37 @@ public class KnapsackTest {
         }
     }
 
+    /*
     @Test
     public void generateReporter() throws Exception {
-        String format = "%-40s%s%n";
-        CsvScanner csv = new CsvScanner("src/main/resources/knapPI_1_50_1000.csv");
+        String format = "%-40s%1.2f \t %s %n";
+        String fileName ;
+        float seconds;
 
-        ArrayList<Instance> instances = csv.getInstances();
+        for (int i=9; i< 10; i++) {
+            fileName = "src/main/resources/knapsack/knapPI_" + i + "_50_1000.csv";
+            System.out.println("\n\n\n Filename : " + fileName);
+            CsvScanner csv = new CsvScanner(fileName);
+            ArrayList<Instance> instances = csv.getInstances();
 
-        Knapsack knapsack;
-
-        System.out.printf(format,"Instance Name","Time (NanoSec)");
-        for (Instance instance: instances ){
-            long start = System.nanoTime();
-            knapsack = new Knapsack(instance.getMaxItems(), instance.getCapacity(),instance.getItems());
-            long finish = System.nanoTime();
-            int opt = instance.getOptimum();
-            int optCalc = knapsack.getOpt();
-            Assert.assertEquals(optCalc, opt);
-            System.out.printf(format,instance.getName(), Long.toString(finish - start));
+            if (instances != null) {
+                System.out.printf("%-40s%s \t %s %n", "Instance Name", "Seconds" ,"NanoSeconds");
+                //for (Instance instance : instances) {
+                 for (int j=37; j<50; j++){
+                    long start = System.nanoTime();
+                    Instance instance = instances.get(j);
+                    Knapsack knapsack = new Knapsack(instance.getMaxItems(), instance.getCapacity(), instance.getItems());
+                    long finish = System.nanoTime();
+                    int opt = instance.getOptimum();
+                    int optCalc = knapsack.getOpt();
+                    Assert.assertEquals(optCalc, opt);
+                    seconds = (finish - start) / 1000000000;
+                    System.out.printf(format, instance.getName(),seconds, Long.toString(finish - start) );
+                    knapsack = null;
+                     instance = null;
+                }
+            }
         }
     }
+    */
 }

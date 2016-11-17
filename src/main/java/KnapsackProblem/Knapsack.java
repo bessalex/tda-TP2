@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class Knapsack {
     int maxItems, maxWeight;
     int [][] knapsack;
+    int optValue;
+
     ArrayList<Item> items;
     int itemWeight, itemValue;
 
@@ -17,6 +19,7 @@ public class Knapsack {
         this.items = items;
 
         knapsack = new int[this.maxItems+1][this.maxWeight+1];
+
         for (int w=0; w <= this.maxWeight; w++) {
             knapsack[0][w] = 0;
         }
@@ -35,11 +38,13 @@ public class Knapsack {
                 }
             }
         }
+        optValue = knapsack[this.maxItems][this.maxWeight];
+        knapsack = null;
     }
 
 
     public int getOpt(){
-        return knapsack[this.maxItems][this.maxWeight];
+        return optValue;
     }
 
 
