@@ -3,6 +3,7 @@ package tspTest;
 import org.junit.Test;
 import tsp.Pair;
 import tsp.TSP;
+import tsp.TspScanner;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -48,5 +49,24 @@ public class TSPTests {
         Pair result = tsp.getPathWeight(0,nodes,matrix);
         System.out.println(String.format("Path : %s . Value : %s",result.getPath(),String.valueOf(result.getValue())));
 
+    }
+
+
+    @Test
+    public void tspSimple_s1() {
+        int items = 14;
+
+        Set<Integer> nodes = new HashSet<>();
+        for (int i=1; i<=items;i++){
+            nodes.add(i);
+        }
+
+
+        TspScanner scan = new TspScanner("src/main/resources/tsp/tsp1.txt",items);
+        Integer[][] matrix = scan.getMatrix(" |\n");
+
+        TSP tsp = new TSP();
+        Pair result = tsp.getPathWeight(0,nodes,matrix);
+     //   System.out.println(String.format("Path : %s . Value : %s",result.getPath(),String.valueOf(result.getValue())));
     }
 }
