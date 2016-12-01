@@ -54,7 +54,7 @@ public class TSPTests {
 
     @Test
     public void tspSimple_s1() {
-        int items = 14;
+        int items = 5;
 
         Set<Integer> nodes = new HashSet<>();
         for (int i=1; i<=items;i++){
